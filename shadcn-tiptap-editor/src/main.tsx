@@ -1,3 +1,3 @@
-export function helloAnything(thing: string): string {
-    return `Hello ${thing}!`
-}
+import Editor from './components/ui/editor/editor.tsx'
+
+export { Editor }

@@ -1,13 +1,19 @@
 {
   "name": "shadcn-tiptap-editor",
-  "private": true,
+  "private": false,
   "version": "1.0.0",
   "type": "module",
+  "main": "dist/main.js",
+  "types": "dist/main.d.ts",
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "dev": "vite",
     "lint": "eslint .",
     "preview": "vite preview",
-    "build": "tsc -b ./tsconfig.lib.json && vite build"
+    "build": "tsc -b ./tsconfig.lib.json && vite build",
+    "prepublishOnly": "npm run build"
   },
   "dependencies": {
     "@radix-ui/react-slot": "^1.2.3",
@@ -21,7 +27,12 @@
     "shadcn": "^2.8.0",
     "tailwind-merge": "^3.3.1"
   },
+  "sideEffects": [
+    "**/*.css"
+  ],
   "devDependencies": {
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
     "@eslint/js": "^9.30.1",
     "@types/node": "^24.0.12",
     "@types/react": "^19.1.8",
@@ -31,6 +42,7 @@
     "eslint": "^9.30.1",
     "eslint-plugin-react-hooks": "^5.2.0",
     "eslint-plugin-react-refresh": "^0.4.20",
+    "glob": "^11.0.3",
     "globals": "^16.3.0",
     "init": "^0.1.2",
     "npx": "^10.2.2",
@@ -40,10 +52,11 @@
     "typescript": "~5.8.3",
     "typescript-eslint": "^8.35.1",
     "vite": "^7.0.3",
-    "vite-plugin-dts": "^4.5.4"
+    "vite-plugin-dts": "^4.5.4",
+    "vite-plugin-lib-inject-css": "^2.2.2",
+    "@radix-ui/react-slot": "^1.2.3"
   },
   "description": "A simple & ready to use tiptap editor using shadcn",
-  "main": "eslint.config.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/golomb1/shadcn-tiptap-editor.git"
