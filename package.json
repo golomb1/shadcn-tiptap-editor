@@ -29,6 +29,7 @@
     "@radix-ui/react-toggle-group": "^1.1.10",
     "@radix-ui/react-tooltip": "^1.2.7",
     "@sereneinserenade/tiptap-comment-extension": "^0.1.2",
+    "@tailwindcss/typography": "^0.5.16",
     "@tailwindcss/vite": "^4.1.11",
     "@tiptap/extension-code-block-lowlight": "^2.25.1",
     "@tiptap/extension-dropcursor": "^2.25.1",
