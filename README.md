@@ -1,69 +1,79 @@
-# React + TypeScript + Vite
+# shadcn-tiptap-editor
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A simple & ready-to-use rich text editor built with [Tiptap](https://tiptap.dev/) and [shadcn/ui](https://ui.shadcn.com/), featuring Markdown support, code blocks, comments, mentions, tables, and more. This project is designed for easy integration into React applications and provides a modern, extensible editing experience.
 
-Currently, two official plugins are available:
+## Example
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+You can interact with a live Storybook demo of the TiptapEditor component here:
 
-## Expanding the ESLint configuration
+[Live Storybook: TiptapEditor](https://golomb1.github.io/shadcn-tiptap-editor/)
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Features
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+- **Rich Text Editing**: Powered by Tiptap and ProseMirror, supporting all standard formatting.
+- **Markdown Mode**: Toggle between rich text and markdown editing.
+- **Code Blocks**: Syntax highlighting for multiple languages using `lowlight`.
+- **Comments**: Inline comment support via the `@sereneinserenade/tiptap-comment-extension`.
+- **Mentions**: Customizable mention suggestions and rendering.
+- **Tables**: Advanced table editing with resizing and custom cell attributes.
+- **Task Lists**: Support for checklists and nested tasks.
+- **Mathematics**: Inline and block math rendering with KaTeX.
+- **Slash Commands**: Quick command menu for inserting elements.
+- **Customizable Toolbar**: Easily extend or modify the editor's toolbar and commands.
+- **Resizable Panels**: Editor and comments panel can be resized for better UX.
+- **Theming**: Styled with Tailwind CSS and shadcn/ui components for a modern look.
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+## Getting Started
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+### Installation
+
+```bash
+npm install shadcn-tiptap-editor
+# or
+yarn add shadcn-tiptap-editor
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### Usage
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+```tsx
+import { TiptapEditor } from 'shadcn-tiptap-editor';
 
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+function MyEditor() {
+  return (
+    <TiptapEditor
+      content="Hello, world!"
+      onChange={markdown => console.log(markdown)}
+      placeholder="Start typing..."
+      codeLanguages={['js', 'ts', 'python']}
+      commentOptions={{
+        setActiveCommentId: (id) => { /* ... */ },
+        createNewCommentAndReturnId: async () => { /* ... */ return 'id'; }
+      }}
+      mentionsQuery={query => [/* ...suggestions... */]}
+    />
+  );
+}
 ```
+
+### Props
+
+- `content` (string): Initial content for the editor.
+- `onChange` (function): Callback when the editor content changes (returns Markdown).
+- `placeholder` (string): Placeholder text for the editor.
+- `codeLanguages` (string[]): Supported code languages for syntax highlighting.
+- `commentOptions` (object): Options for comment integration.
+- `mentionsQuery` (function): Function to provide mention suggestions.
+
+## Development
+
+- **Storybook**: Run `npm run storybook` to view and develop components in isolation.
+- **Build**: `npm run build` to build the library.
+- **Lint**: `npm run lint` to check code quality.
+
+## License
+
+ISC
+
+## Author
+
+[Tomer Golomb](https://github.com/golomb1)
