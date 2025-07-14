@@ -10,7 +10,6 @@ import { SlashCommand } from "./extenstions/slash-command/slash-command"
 import { Toolbar } from "./toolbar"
 import { useCallback, useMemo, useState, type PropsWithChildren } from "react"
 import { MentionSuggestions } from "./extenstions/mentions/mentions"
-import Dropcursor from "@tiptap/extension-dropcursor"
 import { Mathematics } from '@tiptap/extension-mathematics'
 import Table from '@tiptap/extension-table'
 import TableCell from '@tiptap/extension-table-cell'
@@ -28,7 +27,6 @@ import Mention from '@tiptap/extension-mention'
 import { Node as ProseMirrorNode } from '@tiptap/pm/model'
 import TaskItem from '@tiptap/extension-task-item'
 import TaskList from '@tiptap/extension-task-list'
-import Code from '@tiptap/extension-code'
 import { Textarea } from "@/components/ui/textarea"
 import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from "@/components/ui/resizable"
 import type { SuggestionOptions } from "@tiptap/suggestion"
@@ -108,21 +106,15 @@ export function TiptapEditor({
                     class: "border-l-4 pl-4 italic  my-4",
                 },
             },
-            codeBlock: {
-                HTMLAttributes: {
-                    class: "border rounded-md p-4 font-mono text-sm my-4 overflow-x-auto",
-                },
-            },
             code: {
                 HTMLAttributes: {
-                    class: "px-1.5 py-0.5 rounded text-sm font-mono ",
+                    class: 'bg-gray-300 not-prose px-1.5 py-0.5 rounded text-sm font-mono',
                 },
             },
-        }),
-        Code.configure({
-            HTMLAttributes: {
-                class: 'bg-gray-300 not-prose px-1.5 py-0.5 rounded text-sm font-mono',
-            },
+            codeBlock: false,
+            dropcursor: {
+
+            }
         }),
         TaskList,
         TaskItem.configure({
@@ -166,10 +158,7 @@ export function TiptapEditor({
         Highlight.configure({
             multicolor: true,
         }),
-        SlashCommand,
-        Dropcursor.configure({
-            /*color: '#000000',*/
-        })
+        SlashCommand
     ]
     if (commentOptions) {
         extensions = [
