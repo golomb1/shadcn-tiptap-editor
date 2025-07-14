@@ -201,7 +201,6 @@ export function TiptapEditor({
         },
         onUpdate: ({ editor }) => {
             const markdown = editor.storage.markdown.getMarkdown()
-            console.log(markdown)
             onChange?.(markdown)
         },
     })
