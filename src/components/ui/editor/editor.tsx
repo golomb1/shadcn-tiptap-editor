@@ -267,7 +267,7 @@ export function TiptapEditor({
                     onToggleMarkdown={toggleMarkdownMode}
                     editorCommandItems={editorCommandItems}
                 />}
-                <div className="min-h-[300px]">
+                <div className="min-h-[300px] p-5 pt-15">
                     <Textarea
                         value={editor.storage.markdown.getMarkdown()}
                         onChange={(e) => editor.commands.setContent(e.target.value)}
@@ -280,7 +280,7 @@ export function TiptapEditor({
                         :
                         <EditorBasic editor={editor} hidden={isMarkdownMode}/>
                     }
-                    {editor && <BubbleMenu className="bubble-menu" tippyOptions={{ duration: 100 }} editor={editor}>
+                    {editor && editable && <BubbleMenu className="bubble-menu" tippyOptions={{ duration: 100 }} editor={editor}>
                         <ToggleGroup variant="default" type="multiple"
                                      onValueChange={bubbleCallback}
                                      value={Object.keys(bubbleAction).filter((s) => editor.isActive(s))}

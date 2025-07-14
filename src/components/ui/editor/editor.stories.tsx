@@ -203,3 +203,59 @@ export const CommentsOutside: Story = {
         placeholder: 'Write some markdown...',
     },
 };
+
+export const ReadOnlyMode: Story = {
+    render: (args) => {
+        const [content, setContent] = useState(args.content || '');
+        return (
+            <TiptapEditor
+                {...args}
+                content={content}
+                onChange={setContent}
+            />
+        );
+    },
+    args: {
+        content: '# Read-Only Editor\n\nThis editor is **not editable**. The toolbar and bubble menu are hidden.\n\n- No editing allowed\n- Clean display\n- Perfect for viewing content',
+        placeholder: 'This content cannot be edited...',
+        editable: false
+    },
+};
+
+export const WithoutToolbar: Story = {
+    render: (args) => {
+        const [content, setContent] = useState(args.content || '');
+        return (
+            <TiptapEditor
+                {...args}
+                content={content}
+                onChange={setContent}
+            />
+        );
+    },
+    args: {
+        content: '# Editor Without Toolbar\n\nThis editor is editable but has no toolbar. You can still:\n\n- Type and edit text\n- Use the bubble menu for formatting\n- Use keyboard shortcuts\n- Use slash commands',
+        placeholder: 'Start typing...',
+        editable: false
+    },
+};
+
+export const CustomStyled: Story = {
+    render: (args) => {
+        const [content, setContent] = useState(args.content || '');
+        return (
+            <div className="max-w-4xl mx-auto">
+                <TiptapEditor
+                    {...args}
+                    content={content}
+                    onChange={setContent}
+                />
+            </div>
+        );
+    },
+    args: {
+        content: '# Custom Styled Editor\n\nThis editor demonstrates custom className styling with wider container.',
+        placeholder: 'Write in a custom styled container...',
+        className: "prose prose-lg max-w-none focus:outline-none text-gray-800"
+    },
+};

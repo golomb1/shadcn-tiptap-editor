@@ -20,6 +20,7 @@ You can interact with a live Storybook demo of the TiptapEditor component here:
 - **Mathematics**: Inline and block math rendering with KaTeX.
 - **Slash Commands**: Quick command menu for inserting elements.
 - **Customizable Toolbar**: Easily extend or modify the editor's toolbar and commands.
+- **Read-Only Mode**: Editor can be set to read-only mode with toolbar and bubble menu hidden.
 - **Resizable Panels**: Editor and comments panel can be resized for better UX.
 - **Theming**: Styled with Tailwind CSS and shadcn/ui components for a modern look.
 
@@ -63,6 +64,23 @@ function MyEditor() {
 - `codeLanguages` (string[]): Supported code languages for syntax highlighting.
 - `commentOptions` (object): Options for comment integration.
 - `mentionsQuery` (function): Function to provide mention suggestions.
+- `editable` (boolean): Whether the editor is editable (default: true). When false, toolbar and bubble menu are hidden.
+- `className` (string): Custom CSS classes for the editor content area.
+
+## Storybook Examples
+
+The project includes comprehensive Storybook stories demonstrating various use cases:
+
+- **Default**: Basic editor with placeholder
+- **WithContent**: Editor with pre-populated content
+- **WithMarkdown**: Editor with markdown syntax examples
+- **WithAllComponents**: Comprehensive demo of all features
+- **Mention**: Editor with mention functionality
+- **CommentsPanel**: Editor with resizable comments panel
+- **CommentsOutside**: Editor with comments section below
+- **ReadOnlyMode**: Non-editable editor for display purposes
+- **WithoutToolbar**: Editor without toolbar but with bubble menu
+- **CustomStyled**: Editor with custom styling and container
 
 ## Development
 
