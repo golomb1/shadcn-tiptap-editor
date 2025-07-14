@@ -29,13 +29,12 @@ import { Node as ProseMirrorNode } from '@tiptap/pm/model'
 import TaskItem from '@tiptap/extension-task-item'
 import TaskList from '@tiptap/extension-task-list'
 import Code from '@tiptap/extension-code'
-
-import 'katex/dist/katex.min.css'
 import { Textarea } from "@/components/ui/textarea"
 import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from "@/components/ui/resizable"
 import type { SuggestionOptions } from "@tiptap/suggestion"
 import { type CommandItem, COMMANDS } from "./commands"
 import { CommentIcon } from "@/assets/icon-comment"
+import 'katex/dist/katex.min.css'
 import "./editor.css"
 
 /**
