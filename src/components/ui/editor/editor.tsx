@@ -261,12 +261,12 @@ export function TiptapEditor({
     return (
         <div className="w-full max-w-none">
             <div className="border rounded-lg overflow-hidden shadow-sm">
-                <Toolbar
+                {editable && <Toolbar
                     editor={editor}
                     isMarkdownMode={isMarkdownMode}
                     onToggleMarkdown={toggleMarkdownMode}
                     editorCommandItems={editorCommandItems}
-                />
+                />}
                 <div className="min-h-[300px]">
                     <Textarea
                         value={editor.storage.markdown.getMarkdown()}
