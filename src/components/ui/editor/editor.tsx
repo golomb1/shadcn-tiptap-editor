@@ -280,7 +280,7 @@ export function TiptapEditor({
                             {children}
                         </EditorResizableWithComments>
                         :
-                        <EditorBasic editor={editor} hidden={isMarkdownMode}/>
+                        <EditorBasic className={contentClassName}  editor={editor} hidden={isMarkdownMode}/>
                     }
                     {editor && editable && <BubbleMenu className="bubble-menu" tippyOptions={{ duration: 100 }} editor={editor}>
                         <ToggleGroup variant="default" type="multiple"
