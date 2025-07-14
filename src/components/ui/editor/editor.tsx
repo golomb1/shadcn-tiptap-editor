@@ -76,7 +76,7 @@ export function TiptapEditor({
                                  commentOptions,
                                  mentionsQuery,
                                  editable=true,
-                                 className,
+                                 className = "prose prose-sm sm:prose lg:prose-lg xl:prose-2xl mx-auto focus:outline-none",
                                  children
                              }: PropsWithChildren<TiptapEditorProps>)
 {
@@ -202,9 +202,11 @@ export function TiptapEditor({
         extensions: extensions,
         content: content,
         editable: editable,
+        enableInputRules: editable,
+        enablePasteRules: editable,
         editorProps: {
             attributes: {
-                class: `prose prose-sm sm:prose lg:prose-lg xl:prose-2xl mx-auto focus:outline-none ${className}`
+                class: className
             },
         },
         onUpdate: ({ editor }) => {
