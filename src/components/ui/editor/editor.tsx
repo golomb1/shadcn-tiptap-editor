@@ -58,6 +58,7 @@ interface TiptapEditorProps {
     mentionsQuery?: (query: string) => string[];
     editable?: boolean;
     className?: string;
+    contentClassName?: string;
 }
 
 /**
@@ -76,6 +77,7 @@ export function TiptapEditor({
                                  mentionsQuery,
                                  editable=true,
                                  className = "prose prose-sm sm:prose lg:prose-lg xl:prose-2xl mx-auto focus:outline-none",
+                                 contentClassName = '',
                                  children
                              }: PropsWithChildren<TiptapEditorProps>)
 {
@@ -267,14 +269,14 @@ export function TiptapEditor({
                     onToggleMarkdown={toggleMarkdownMode}
                     editorCommandItems={editorCommandItems}
                 />}
-                <div className="min-h-[300px] p-5 pt-15">
+                <div className="min-h-[300px] p-5">
                     <Textarea
                         value={editor.storage.markdown.getMarkdown()}
                         onChange={(e) => editor.commands.setContent(e.target.value)}
                         className="min-h-[300px] p-5 "
                         hidden={!isMarkdownMode}/>
                     { children && commentOptions ?
-                        <EditorResizableWithComments editor={editor} hidden={isMarkdownMode}>
+                        <EditorResizableWithComments className={contentClassName} editor={editor} hidden={isMarkdownMode}>
                             {children}
                         </EditorResizableWithComments>
                         :
@@ -317,13 +319,14 @@ export function TiptapEditor({
 interface EditorResizableWithCommentsProps {
     editor: Editor;
     hidden: boolean;
+    className?: string;
 }
 
-const EditorResizableWithComments = (props: PropsWithChildren<EditorResizableWithCommentsProps>) => {
+const EditorResizableWithComments = ({className='', ...props}: PropsWithChildren<EditorResizableWithCommentsProps>) => {
     return (
         <ResizablePanelGroup direction="horizontal">
             <ResizablePanel>
-                <EditorContent editor={props.editor} className="min-h-[300px] p-5 " hidden={props.hidden}/>
+                <EditorContent editor={props.editor} className={`min-h-[300px] p-5 ${className}`} hidden={props.hidden}/>
             </ResizablePanel>
             <ResizableHandle withHandle />
             <ResizablePanel>
@@ -333,8 +336,8 @@ const EditorResizableWithComments = (props: PropsWithChildren<EditorResizableWit
     )
 }
 
-const EditorBasic = (props: EditorResizableWithCommentsProps) => {
+const EditorBasic = ({className='', ...props}: EditorResizableWithCommentsProps) => {
     return (
-        <EditorContent editor={props.editor} className="min-h-[300px] p-5 " hidden={props.hidden}/>
+        <EditorContent editor={props.editor} className={`min-h-[300px] p-5 ${className}`} hidden={props.hidden}/>
     )
 }
