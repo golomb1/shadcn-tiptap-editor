@@ -57,6 +57,8 @@ interface TiptapEditorProps {
         createNewCommentAndReturnId: () => Promise<string>;
     }
     mentionsQuery?: (query: string) => string[];
+    editable?: boolean;
+    className?: string;
 }
 
 /**
@@ -73,6 +75,8 @@ export function TiptapEditor({
                                  codeLanguages,
                                  commentOptions,
                                  mentionsQuery,
+                                 editable=true,
+                                 className,
                                  children
                              }: PropsWithChildren<TiptapEditorProps>)
 {
@@ -197,9 +201,10 @@ export function TiptapEditor({
         shouldRerenderOnTransaction: true,
         extensions: extensions,
         content: content,
+        editable: editable,
         editorProps: {
             attributes: {
-                class: 'prose prose-sm sm:prose lg:prose-lg xl:prose-2xl mx-auto focus:outline-none',
+                class: `prose prose-sm sm:prose lg:prose-lg xl:prose-2xl mx-auto focus:outline-none ${className}`
             },
         },
         onUpdate: ({ editor }) => {
