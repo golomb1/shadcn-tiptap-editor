@@ -261,8 +261,8 @@ export function TiptapEditor({
     }
 
     return (
-        <div className="w-full max-w-none">
-            <div className="border rounded-lg overflow-hidden shadow-sm">
+        <div className="w-full max-w-none ">
+            <div className="border Editor rounded-lg overflow-hidden shadow-sm">
                 {editable && <Toolbar
                     editor={editor}
                     isMarkdownMode={isMarkdownMode}

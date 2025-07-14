@@ -3,6 +3,10 @@ import { useState } from 'react';
 import { TiptapEditor } from './editor';
 import { useCommentSection } from "../comments/use-comment-section";
 import { type Comment } from '../comments/comments-datatype';
+import { useForm} from 'react-hook-form';
+import {zodResolver} from "@hookform/resolvers/zod";
+import {z} from "zod";
+import {Form, FormControl, FormField, FormItem, FormLabel, FormMessage} from "@/components/ui/form.tsx";
 
 const meta = {
     title: 'Editor/TiptapEditor',
@@ -259,3 +263,71 @@ export const CustomStyled: Story = {
         className: "prose prose-lg max-w-none focus:outline-none text-gray-800"
     },
 };
+
+export const ControlledEditor: Story = {
+    render: (args) => {
+        const [content, setContent] = useState(args.content || '');
+
+        return (
+            <div className="max-w-4xl mx-auto space-y-6">
+                <TiptapEditor
+                    {...args}
+                    content={content}
+                    onChange={setContent}
+                />
+                <p>{content}</p>
+            </div>
+        );
+    },
+    args: {
+        placeholder: 'Write your article content here...',
+        content: '# Getting Started\n\nWrite your article content here...',
+    },
+};
+
+const FormDataSchema = z.object({
+    content: z.string()
+})
+
+type FormData = z.infer<typeof FormDataSchema>
+
+export const EditorUpdatesForm: Story = {
+    render: (args) => {
+        const form = useForm<FormData>({
+            resolver: zodResolver(FormDataSchema),
+            defaultValues: { content: '' }
+        })
+
+        const handleSubmit = (data: FormData) => {
+            console.log(data)
+            form.reset()
+        }
+
+        return (
+            <Form {...form}>
+                <form onSubmit={form.handleSubmit(handleSubmit)} className="space-y-6">
+                    <FormField
+                        control={form.control}
+                        name="content"
+                        render={({ field }) => (
+                            <FormItem>
+                                <FormLabel>Content</FormLabel>
+                                <FormControl>
+                                    <TiptapEditor
+                                        {...args}
+                                        {...field}
+                                    />
+                                </FormControl>
+                                <FormMessage />
+                            </FormItem>
+                        )}/>
+                </form>
+            </Form>
+            );
+    },
+    args: {
+        placeholder: 'Start writing your article...',
+        content: '# My First Article\n\nThis is an example article about #technology and #programming.\n\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.\n\n#webdev #react #tiptap',
+    },
+};
+

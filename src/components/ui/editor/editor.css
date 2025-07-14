@@ -7,6 +7,24 @@
     pointer-events: none;
 }
 
+.bubble-menu {
+    background-color: var(--popover);
+    border: 1px solid var(--border);
+    border-radius: 0.7rem;
+    display: flex;
+    padding: 0.2rem;
+}
+
+.Editor{
+    background-color: var(--background);
+}
+
+
+.ProseMirror:focus {
+    outline: none;
+}
+
+
 .tiptap {
     .mention {
         background-color: var(--color-blue-200);
@@ -123,17 +141,6 @@
     .tableWrapper {
         margin: 1.5rem 0;
         overflow-x: auto;
-    }
-    .bubble-menu {
-        background-color: var(--popover);
-        border: 1px solid var(--border);
-        border-radius: 0.7rem;
-        display: flex;
-        padding: 0.2rem;
-    }
-
-    .ProseMirror:focus {
-        outline: none;
     }
 
     pre {
